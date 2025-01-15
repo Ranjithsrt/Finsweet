@@ -200,7 +200,7 @@ function validateInputs() {
     setError(username, "Username is required");
   } else if (usernameValue.length < 5) {
     isValid = false;
-    setError(username, "Username must be at least 8 characters long");
+    setError(username, "Username must be at least 5 characters long");
   } else if (!validateNoSymbols(usernameValue)) {
     isValid = false;
     setError(username, "Username must not contain symbols");
