@@ -168,6 +168,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault(); // Prevent form submission if validation fails
   } else {
     e.preventDefault(); // For testing purposes, prevent actual form submission
+    saveToLocalStorage(); // Save validated inputs to local storage
     displaySuccessMessage("Form submitted successfully!");
   }
 });
@@ -283,6 +284,39 @@ function setSuccess(element) {
   inputGroup.classList.remove("error");
 }
 
+//! Save Data to Local Storage
+function saveToLocalStorage() {
+  const userData = {
+    username: username.value.trim(),
+    email: email.value.trim(),
+    password: password.value.trim(), // Avoid saving passwords in real applications
+  };
+
+  // Save the user data as a string in local storage
+  localStorage.setItem("userData", JSON.stringify(userData));
+  console.log("Data saved to local storage:", userData);
+}
+
+/*
+//! Retrieve Data from Local Storage
+function getFromLocalStorage() {
+  const storedData = localStorage.getItem("userData");
+  if (storedData) {
+    const userData = JSON.parse(storedData);
+    console.log("Data retrieved from local storage:", userData);
+
+    // Prefill the form fields (optional)
+    username.value = userData.username || "";
+    email.value = userData.email || "";
+    password.value = userData.password || "";
+  }
+}
+*/
+//! Delete Data from Local Storage
+function deleteFromLocalStorage() {
+  localStorage.removeItem("userData");
+  console.log("Data deleted from local storage.");
+}
 // Success message dynamically added via JavaScript
 
 function displaySuccessMessage(message) {
@@ -303,3 +337,5 @@ function displaySuccessMessage(message) {
     successMessage.style.display = "none";
   }, 3000); // 3000 milliseconds = 3 seconds
 }
+
+// getFromLocalStorage();
